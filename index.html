@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccion de Carrera</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+    <header>
+        <h1>CECyT 12 "José María Morelos"</h1>
+        <h2>Carreras Técnicas</h2>
+    </header>
+
+    <a href="./carreras/index.html">Ver carreras</a>
+
+    <div id="carreras-container"></div>
+    <div class="carreras-container">
+        <button class="boton-carrera" onclick="redirigir('Tecnico en informatica')">Técnico en Informática</button>
+        <button class="boton-carrera" onclick="redirigir('Tecnico en administracion')">Técnico en Administracion</button>
+        <button class="boton-carrera" onclick="redirigir('Tecnico en contaduria')">Técnico en Contaduria</button>
+        <button class="boton-carrera" onclick="redirigir('Tecnico en mercadotecnica')">Técnico en Mercadotecnica</button>
+
+    </div>
+
+
+        <form id="formulario-registro">
+        <input type="text" id="nombre" placeholder="Nombre completo" required/>
+        <input type="text" id="boleta" placeholder="Boleta" required/>
+        <select id="carrera-seleccionada" required>
+            <optgroup label="Carreras"></optgroup>
+            <option value="">Selecciona tu carrera</option>
+            <option value="Tecnic en informatica">Tecnico en informatica</option>
+            <option value="Tecnico en administracion">Tecnico en administracion</option>
+            <option value="Tecnico en contaduria">Tecnico en contaduria</option>
+            <option value="Tecnico en mercadotecnia">Tecnico en mercadotecnia</option>
+          </select>
+          
+          <button type="submit">Registrarse</button>
+        
+
+    </form>
+    <script src="script.js" type="module"></script>
+    
+</body>
+</html>
