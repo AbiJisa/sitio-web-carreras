@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, setDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // Configuración de Firebase (usa la configuración que obtuviste de Firebase)
 const firebaseConfig = {
@@ -20,42 +20,65 @@ function redirigir(carrera) {
   window.location.href = `carrera.html?nombre=${encodeURIComponent(carrera)}`;
 }
 
-// 👉 Función para registrar datos en Firebase
+// 👉 Función para registrar datos en Firebase usando la boleta como ID
 const formulario = document.getElementById('formulario-registro');
+const mensajeExito = document.getElementById('mensaje-exito'); // Mensaje de confirmación
+
 formulario.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const nombre = document.getElementById('nombre').value;
-  const boleta = document.getElementById('boleta').value;
-  const carreraSeleccionada = document.getElementById('carrera-seleccionada').value;
+  // Obtener valores del formulario
+  const nombre = document.getElementById('nombre').value.trim();
+  const boleta = document.getElementById('boleta').value.trim();
+  const carreraSeleccionada = document.getElementById('carrera-seleccionada').value.trim();
 
+  // ✅ Validación de campos
   if (!nombre || !boleta || !carreraSeleccionada) {
     alert("Por favor, completa todos los campos.");
     return;
   }
 
   try {
-    // 🔥 Si quieres que Firebase genere el ID automáticamente:
-    const docRef = await addDoc(collection(db, 'registros'), {
+    // ✅ Verificar si la boleta ya existe
+    const registroExistente = await getDoc(doc(db, "registros", boleta));
+    if (registroExistente.exists()) {
+      alert(`La boleta ${boleta} ya está registrada.`);
+      return;
+    }
+
+    // ✅ Guardar datos en Firestore usando la boleta como ID
+    await setDoc(doc(db, "registros", boleta), {
       nombre: nombre,
       boleta: boleta,
       carrera: carreraSeleccionada
     });
 
-    formulario.reset(); // Limpia el formulario después de registrar
+    // ✅ Mostrar mensaje de éxito y limpiar el formulario
+    mostrarMensajeExito(`Registro exitoso para la boleta ${boleta}`);
+    formulario.reset();
   } catch (error) {
     console.error("Error al registrar:", error);
     alert('Hubo un error al registrar los datos.');
   }
 });
 
+// 👉 Función para mostrar mensaje de éxito
+function mostrarMensajeExito(mensaje) {
+  mensajeExito.innerText = mensaje;
+  mensajeExito.style.display = "block"; // Mostrar mensaje
+  setTimeout(() => {
+    mensajeExito.style.display = "none"; // Ocultar mensaje después de 3 segundos
+  }, 3000);
+}
+
 // 👉 Crear botones dinámicamente para redirigir a cada carrera
 const carreras = [
-  { nombre: 'Tecnico en informatica', url: "./carreras/tecnico-informatica.html" },
+  { nombre: 'Técnico en informática', url: "./carreras/tecnico-informatica.html" },
   { nombre: "Técnico en administración", url: "./carreras/tecnico-administracion.html" },
   { nombre: "Técnico en contaduría", url: "./carreras/tecnico-contaduria.html" },
   { nombre: "Técnico en mercadotecnia", url: "./carreras/tecnico-mercadotecnia.html" }
 ];
+
 const contenedor = document.getElementById('carreras-container');
 
 carreras.forEach(carrera => {

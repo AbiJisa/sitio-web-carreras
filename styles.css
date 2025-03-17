@@ -83,9 +83,11 @@ h1, h2 {
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-width: 400px;
-  margin: 0 auto;
+  gap: 12px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 input, select, button {
@@ -105,6 +107,16 @@ button {
 
 button:hover {
   background-color: rgb(147, 42, 42);
+}
+
+#mensaje-exito {
+  display: none;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 /* Página de carrera */
