@@ -15,14 +15,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 👉 Función para redirigir a otra página
+// Función para redirigir a otra página
 function redirigir(carrera) {
   window.location.href = `carrera.html?nombre=${encodeURIComponent(carrera)}`;
-}
+ }
 
-// 👉 Función para registrar datos en Firebase usando la boleta como ID
+// Función para registrar datos en Firebase usando la boleta como ID
 const formulario = document.getElementById('formulario-registro');
-const mensajeExito = document.getElementById('mensaje-exito'); // Mensaje de confirmación
+const mensajeExito = document.getElementById('mensaje-exito'); 
 
 formulario.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -32,21 +32,21 @@ formulario.addEventListener('submit', async (e) => {
   const boleta = document.getElementById('boleta').value.trim();
   const carreraSeleccionada = document.getElementById('carrera-seleccionada').value.trim();
 
-  // ✅ Validación de campos
+  // Validación de campos
   if (!nombre || !boleta || !carreraSeleccionada) {
     alert("Por favor, completa todos los campos.");
     return;
   }
 
   try {
-    // ✅ Verificar si la boleta ya existe
+    // Verificar si la boleta ya existe
     const registroExistente = await getDoc(doc(db, "registros", boleta));
     if (registroExistente.exists()) {
       alert(`La boleta ${boleta} ya está registrada.`);
       return;
     }
 
-    // ✅ Guardar datos en Firestore usando la boleta como ID
+    // Guardar datos en Firestore usando la boleta como ID
     await setDoc(doc(db, "registros", boleta), {
       nombre: nombre,
       boleta: boleta,
