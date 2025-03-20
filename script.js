@@ -40,6 +40,7 @@ formulario.addEventListener('submit', async (e) => {
 
   try {
     // Verificar si la boleta ya existe
+    // const sirve para darle un registro unico 
     const registroExistente = await getDoc(doc(db, "registros", boleta));
     if (registroExistente.exists()) {
       alert(`La boleta ${boleta} ya está registrada.`);
@@ -53,7 +54,7 @@ formulario.addEventListener('submit', async (e) => {
       carrera: carreraSeleccionada
     });
 
-    // ✅ Mostrar mensaje de éxito y limpiar el formulario
+    // Mostrar mensaje de éxito y limpiar el formulario
     mostrarMensajeExito(`Registro exitoso para la boleta ${boleta}`);
     formulario.reset();
   } catch (error) {
@@ -62,7 +63,7 @@ formulario.addEventListener('submit', async (e) => {
   }
 });
 
-// 👉 Función para mostrar mensaje de éxito
+// Función para mostrar mensaje de éxito
 function mostrarMensajeExito(mensaje) {
   mensajeExito.innerText = mensaje;
   mensajeExito.style.display = "block"; // Mostrar mensaje
@@ -71,7 +72,7 @@ function mostrarMensajeExito(mensaje) {
   }, 3000);
 }
 
-// 👉 Crear botones dinámicamente para redirigir a cada carrera
+// Crear botones dinámicamente para redirigir a cada carrera
 const carreras = [
   { nombre: 'Técnico en informática', url: "./carreras/tecnico-informatica.html" },
   { nombre: "Técnico en administración", url: "./carreras/tecnico-administracion.html" },
