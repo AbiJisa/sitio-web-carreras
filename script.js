@@ -32,20 +32,30 @@ formulario.addEventListener('submit', async (e) => {
   const boleta = document.getElementById('boleta').value.trim();
   const carreraSeleccionada = document.getElementById('carrera-seleccionada').value.trim();
 
-  // Validación de campos
-  if (!nombre || !boleta || !carreraSeleccionada) {
-    alert("Por favor, completa todos los campos.");
-    return;
-  }
+ // Validación de la boleta
+ const boletaRegex = /^\d{10}$/; // Debe ser exactamente 10 dígitos numéricos
+ if (!boletaRegex.test(boleta)) {
+   alert("La boleta debe contener exactamente 10 números.");
+   return;
+ }
+
+ // Validación de campos
+ if (!nombre || !boleta || !carreraSeleccionada) {
+   alert("Por favor, completa todos los campos.");
+   return;
+ }
 
   try {
     // Verificar si la boleta ya existe
-    // const sirve para darle un registro unico 
+q     // const sirve para darle un registro unico 
     const registroExistente = await getDoc(doc(db, "registros", boleta));
     if (registroExistente.exists()) {
       alert(`La boleta ${boleta} ya está registrada.`);
       return;
     }
+
+    // Obtener la fecha y hora actual
+    const fechaRegistro = new Date().toLocaleString("es-MX", { timeZone: "America/Mexico_City" });
 
     // Guardar datos en Firestore usando la boleta como ID
     await setDoc(doc(db, "registros", boleta), {
