@@ -9,7 +9,7 @@ const firebaseConfig = {
     storageBucket: "sitiowebcecyt12.firebasestorage.app",
     messagingSenderId: "332248615042",
     appId: "1:332248615042:web:3b373f14f77e3adc0b8c9b"
-  };
+};
 
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
@@ -18,7 +18,7 @@ const db = getFirestore(app);
 // Función para redirigir a otra página
 function redirigir(carrera) {
   window.location.href = `carrera.html?nombre=${encodeURIComponent(carrera)}`;
- }
+}
 
 // Función para registrar datos en Firebase usando la boleta como ID
 const formulario = document.getElementById('formulario-registro');
@@ -32,22 +32,21 @@ formulario.addEventListener('submit', async (e) => {
   const boleta = document.getElementById('boleta').value.trim();
   const carreraSeleccionada = document.getElementById('carrera-seleccionada').value.trim();
 
- // Validación de la boleta
- const boletaRegex = /^\d{10}$/; // Debe ser exactamente 10 dígitos numéricos
- if (!boletaRegex.test(boleta)) {
-   alert("La boleta debe contener exactamente 10 números.");
-   return;
- }
+  // Validación de la boleta
+  const boletaRegex = /^\d{10}$/; // Debe ser exactamente 10 dígitos numéricos
+  if (!boletaRegex.test(boleta)) {
+    alert("La boleta debe contener exactamente 10 números.");
+    return;
+  }
 
- // Validación de campos
- if (!nombre || !boleta || !carreraSeleccionada) {
-   alert("Por favor, completa todos los campos.");
-   return;
- }
+  // Validación de campos
+  if (!nombre || !boleta || !carreraSeleccionada) {
+    alert("Por favor, completa todos los campos.");
+    return;
+  }
 
   try {
     // Verificar si la boleta ya existe
-q     // const sirve para darle un registro unico 
     const registroExistente = await getDoc(doc(db, "registros", boleta));
     if (registroExistente.exists()) {
       alert(`La boleta ${boleta} ya está registrada.`);
@@ -61,11 +60,12 @@ q     // const sirve para darle un registro unico
     await setDoc(doc(db, "registros", boleta), {
       nombre: nombre,
       boleta: boleta,
-      carrera: carreraSeleccionada
+      carrera: carreraSeleccionada,
+      fechaRegistro: fechaRegistro
     });
 
     // Mostrar mensaje de éxito y limpiar el formulario
-    mostrarMensajeExito(`Registro exitoso para la boleta ${boleta}`);
+    mostrarMensajeExito(`Registro exitoso para la boleta ${boleta}`, fechaRegistro);
     formulario.reset();
   } catch (error) {
     console.error("Error al registrar:", error);
@@ -74,8 +74,8 @@ q     // const sirve para darle un registro unico
 });
 
 // Función para mostrar mensaje de éxito
-function mostrarMensajeExito(mensaje) {
-  mensajeExito.innerText = mensaje;
+function mostrarMensajeExito(mensaje, fecha) {
+  mensajeExito.innerHTML = `${mensaje}<br><strong>Fecha y hora:</strong> ${fecha}`;
   mensajeExito.style.display = "block"; // Mostrar mensaje
   setTimeout(() => {
     mensajeExito.style.display = "none"; // Ocultar mensaje después de 3 segundos
