@@ -1,4 +1,4 @@
-/* Estilo general */
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
@@ -6,7 +6,7 @@ body {
   text-align: center;
 }
 
-/* Encabezado */
+
 header {
   background-color: rgb(147, 42, 42);
   color: white;
@@ -37,22 +37,42 @@ header {
   margin-bottom: 20px;
 }
 
-/* Imagen de bienvenida */
+
 .imagen-bienvenida {
-  width: 100%; /* Que ocupe el ancho completo */
-  max-width: 600px; /* Limitar el tamaño máximo */
+  width: 100%; 
+  max-width: 600px; 
   height: auto;
   object-fit: cover;
-  border-radius: 12px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  border-radius: 12px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   margin-top: 10px;
-  transition: transform 0.3s ease; /* Animación al pasar el cursor */
+  transition: transform 0.3s ease; 
 }
 
 .imagen-bienvenida:hover {
-  transform: scale(1.03); /* Hace zoom suave al pasar el cursor */
+  transform: scale(1.03);
 }
 
+.mensaje-registro {
+  background-color: #fff8e1;
+  border: 1px solid #ff954f;
+  padding: 20px;
+  margin: 30px auto;
+  max-width: 700px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.mensaje-registro h3 {
+  color: #8b0000;
+  margin-bottom: 10px;
+}
+
+.mensaje-registro p {
+  font-size: 16px;
+  margin: 5px 0;
+}
 
 .contenedor-carrera {
   max-width: 800px;
