@@ -27,6 +27,9 @@ const mensajeExito = document.getElementById('mensaje-exito');
 formulario.addEventListener('submit', async (e) => {
   e.preventDefault();
 
+  console.log("¿Existe carrera-1?", document.getElementById('carrera-1'));
+console.log("¿Existe carrera-2?", document.getElementById('carrera-2')); 
+
   // Obtener valores del formulario
   const boleta = document.getElementById("boleta").value.trim();
   const paterno = document.getElementById("apellido-paterno").value.trim();

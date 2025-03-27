@@ -6,6 +6,7 @@
     <title>Seleccion de Carrera </title>
     <link rel="stylesheet" href="styles.css"/>
 </head>
+
 <body>
 
     <header>
@@ -28,8 +29,9 @@
         <p><strong>Completa el siguiente formulario</strong> para registrarte y formar parte del CECyT 12 "José María Morelos".</p>
       </div>
       
-    <div id="carreras-container"></div>
-    <div class="carreras-container"></div>
+    
+      <div id="carreras-container"></div>
+    
 
         <form id="formulario-registro">
 
@@ -38,25 +40,25 @@
         <input type="text" id="apellido-materno" placeholder="Apellido materno" required/>
         <input type="text" id="nombres" placeholder="Nombres" required/>
 
-        <select id="carrera1" required>
-            <optgroup label="primera opcion"></optgroup>
-            <option value="">Selecciona tu carrera</option>
-            <option value="Tecnico en informatica">Tecnico en informatica</option>
-            <option value="Tecnico en administracion">Tecnico en administracion</option>
-            <option value="Tecnico en contaduria">Tecnico en contaduria</option>
-            <option value="Tecnico en mercadotecnia">Tecnico en mercadotecnia</option>
-          </select>
-
-          <select id="carrera2" required>
-            <optgroup label="segunda opcion"></optgroup>
-            <option value="">Selecciona tu carrera</option>
-            <option value="Tecnico en informatica">Tecnico en informatica</option>
-            <option value="Tecnico en administracion">Tecnico en administracion</option>
-            <option value="Tecnico en contaduria">Tecnico en contaduria</option>
-            <option value="Tecnico en mercadotecnia">Tecnico en mercadotecnia</option>
-          </select>
-          
-          <button type="submit">Registrarse</button>
+        
+   
+        <select id="carrera-1" required>
+          <option value="">Selecciona 1ra opción de carrera</option>
+          <option value="Técnico en informática">Técnico en informática</option>
+          <option value="Técnico en administración">Técnico en administración</option>
+          <option value="Técnico en contaduría">Técnico en contaduría</option>
+          <option value="Técnico en mercadotecnia">Técnico en mercadotecnia</option>
+        </select>
+    
+        <select id="carrera-2" required>
+          <option value="">Selecciona 2da opción de carrera</option>
+          <option value="Técnico en informática">Técnico en informática</option>
+          <option value="Técnico en administración">Técnico en administración</option>
+          <option value="Técnico en contaduría">Técnico en contaduría</option>
+          <option value="Técnico en mercadotecnia">Técnico en mercadotecnia</option>
+        </select>
+    
+        <button type="submit">Registrarse</button>
         
 
     </form>
@@ -67,7 +69,7 @@
         <p>&copy; 2025 CECyT 12 "José María Morelos" </p>
       </footer>
 
-    <script src="script.js" type="module"></script>
+      <script type="module" src="script.js"></script>
     
 </body>
 </html>
