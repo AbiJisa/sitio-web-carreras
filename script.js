@@ -15,10 +15,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Función para redirigir a otra página
-function redirigir(carrera) {
+// Función para redirigir a las otras páginas
+ function redirigir(carrera) {
   window.location.href = `carrera.html?nombre=${encodeURIComponent(carrera)}`;
-}
+ }
 
 // Función para registrar datos en Firebase usando la boleta como ID
 const formulario = document.getElementById('formulario-registro');
@@ -28,9 +28,13 @@ formulario.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   // Obtener valores del formulario
-  const nombre = document.getElementById('nombre').value.trim();
-  const boleta = document.getElementById('boleta').value.trim();
-  const carreraSeleccionada = document.getElementById('carrera-seleccionada').value.trim();
+  const boleta = document.getElementById("boleta").value.trim();
+  const paterno = document.getElementById("apellido-paterno").value.trim();
+  const materno = document.getElementById("apellido-materno").value.trim();
+  const nombres = document.getElementById("nombres").value.trim();
+  const carrera1 = document.getElementById("carrera-1").value.trim();
+  const carrera2 = document.getElementById("carrera-2").value.trim();
+  // const carreraSeleccionada = document.getElementById('carrera-seleccionada').value.trim();
 
   // Validación de la boleta
   const boletaRegex = /^\d{10}$/; // Debe ser exactamente 10 dígitos numéricos
@@ -40,7 +44,7 @@ formulario.addEventListener('submit', async (e) => {
   }
 
   // Validación de campos
-  if (!nombre || !boleta || !carreraSeleccionada) {
+  if (!boleta || !paterno || !materno || !nombres || !carrera1 || !carrera2) {
     alert("Por favor, completa todos los campos.");
     return;
   }
@@ -58,9 +62,13 @@ formulario.addEventListener('submit', async (e) => {
 
     // Guardar datos en Firestore usando la boleta como ID
     await setDoc(doc(db, "registros", boleta), {
-      nombre: nombre,
       boleta: boleta,
-      carrera: carreraSeleccionada,
+      apellidopaterno: paterno,
+      apellidomaterno: materno,
+      nombres: nombres,
+      primeraopcion: carrera1,
+      segundaopcion: carrera2,
+      // carrera: carreraSeleccionada,
       fechaRegistro: fechaRegistro
     });
 

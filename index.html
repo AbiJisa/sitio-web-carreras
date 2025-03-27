@@ -32,10 +32,23 @@
     <div class="carreras-container"></div>
 
         <form id="formulario-registro">
-        <input type="text" id="nombre" placeholder="Nombre completo" required/>
-        <input type="text" id="boleta" placeholder="Boleta" required/>
-        <select id="carrera-seleccionada" required>
-            <optgroup label="Carreras"></optgroup>
+
+        <input type="text" id="boleta" placeholder="Boleta" maxlength="10" required/>
+        <input type="text" id="apellido-paterno" placeholder="Apellido paterno" required/>
+        <input type="text" id="apellido-materno" placeholder="Apellido materno" required/>
+        <input type="text" id="nombres" placeholder="Nombres" required/>
+
+        <select id="carrera1" required>
+            <optgroup label="primera opcion"></optgroup>
+            <option value="">Selecciona tu carrera</option>
+            <option value="Tecnico en informatica">Tecnico en informatica</option>
+            <option value="Tecnico en administracion">Tecnico en administracion</option>
+            <option value="Tecnico en contaduria">Tecnico en contaduria</option>
+            <option value="Tecnico en mercadotecnia">Tecnico en mercadotecnia</option>
+          </select>
+
+          <select id="carrera2" required>
+            <optgroup label="segunda opcion"></optgroup>
             <option value="">Selecciona tu carrera</option>
             <option value="Tecnico en informatica">Tecnico en informatica</option>
             <option value="Tecnico en administracion">Tecnico en administracion</option>
